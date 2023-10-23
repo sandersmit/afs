@@ -9,18 +9,19 @@
 </template>
 
 <style lang="scss">
+@import "./assets/scss/variables.scss";
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: $dark;
 
   .transfers, .home{
-    background-color: #535A74;
+    background-color: $gray-dark-4;
     padding: 2rem;
     margin: 0px 2rem;
-    color: white;
+    color: $gray-light-5;
     font-size: 1.2rem;
     display: flex;
     flex-direction: column;
@@ -31,7 +32,7 @@
      opacity: 0;
       &.complete{
         opacity: 1;
-        color: #42b983;
+        color: $green;
     }
   }
   #nav {
@@ -39,23 +40,23 @@
     text-align: left;
     a {
       font-weight: bold;
-      color: #2c3e50;
+      color: $gray-dark-3;
       &.router-link-exact-active {
-        color: #42b983;
+        color: $green;
       }
     }
   }
   h1,h3{
     text-align: right;
-    color:#42b983;
+    color:$green;
     font-weight: 800;
     margin-bottom: 1rem;
   }
   .transfers{
-    background-color: #535A74;
+    background-color: $gray-dark-4;
     padding: 2rem;
     margin: 0px 2rem;
-    color: white;
+    color: $gray-light-5;
     font-size: 1.2rem;
   }
 
@@ -87,29 +88,31 @@
         padding: 12px 20px;
         margin: 8px 0;
         box-sizing: border-box;
+        border-radius: 5px;
     }
 }
 a{
   font-family: Avenir, Helvetica, Arial, sans-serif;
   &:hover{
-    color: #ffffff;
+    color: $gray-light-5;
   }
 }
   .cta, button{
-    border: none;
+    border: solid 1px $green-lighter;
+    border-radius: 5px;
     margin-top: 1rem;
     margin-left: auto;
     display: inline-block;
     font-size: 0.8em;
     padding: 0.4em 1em;
     width: auto;
-    color: #ffffff;
+    color: $gray-light-5;
     cursor: pointer;
-    background-color: #42b983;
+    background-color: $green-dark;
     font-weight: 400;
     line-height: 1.5;
     &:hover {
-      background-color: #0bc873;
+      background-color: $green;
     }
   }
 }

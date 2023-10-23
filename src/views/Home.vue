@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-      
     <b-table :data="computedcalcDataColumns" :columns="columns"></b-table>
     <a class="cta" @click="popForm">
         Add new class
@@ -9,10 +8,7 @@
     <h3>Add security class form</h3>
       <div>
         <label>	Authorized amount</label>
-        <input
-                       placeholder="Authorized amount"
-                       min="100" @input="inputCheckinputAuthorizedAmount($event)"/>
-        
+        <input type="number" placeholder="Authorized amount" min="100" @input="inputCheckinputAuthorizedAmount($event)"/>
       </div>
       <div>
         <label>Issued amount</label>
@@ -84,8 +80,6 @@ export default class Home extends Vue {
   inputAuthorizedCapital= 0;
   inputIssuedCapital = 0;
 
-  
-
   newTotalDataObject = 
     {
         id: "Total",
@@ -125,12 +119,6 @@ export default class Home extends Vue {
     //     console.log(error, "This is not good");
     //   });
 
-
-    // this.fetchData();
-    // this.fetchData().catch((error) => {
-    //   console.error('Error:', error);
-    // });
-
     this.initDataColumns()
     this.initDataColumns().catch((error) => {
       console.error('Error:', error);
@@ -167,7 +155,7 @@ export default class Home extends Vue {
     const newSecurityObject = 
     {
         id: "42f2462d-49d0-4e91-8fe1-de2e656b0f0688",
-        name: "Series",
+        name: "Serie ..",
         nominalValue: 5,
         // authorizedAmount: Math.floor(Math.random()*10000),
         // issuedAmount: Math.floor(Math.random()*10000),
@@ -192,20 +180,11 @@ export default class Home extends Vue {
   async fetchData() {
     console.log("fetchData()");
       const response = await this.getData();
-    //  console.log(response);
+      //console.log(response);
       const data = await response;
       this.tableData = data; 
-     // console.log(data);
+      //console.log(data);
       return data;
-  }
-
-  async reCalcData(){
-    console.log("reCalcData()", this.tableData);
-   // this.calcDataColumns()
-    //const response =  await this.calcDataColumns();
-    //this.tableData = response;
-    //console.log("reCalcData() await..", this.tableData)
-    // return this.tableData;
   }
   
   //Make it async because using await
@@ -218,32 +197,20 @@ export default class Home extends Vue {
       this.addTotalDataRow()
       //calc the total data
       this.calcDataColumns(this.tableData)
-      
-     // return this.tableData;
     }
 
     async calcDataColumns(arg:TableData[]) {
       const lastIndex = arg.length-1;
-      // const lastfieldcalc = arg.length;
-      console.log("lastindex:", lastIndex);
-
       this.newTotalDataObject.authorizedAmount= 0;
       this.newTotalDataObject.issuedAmount = 0;
       this.newTotalDataObject.authorizedCapital  = 0;
       this.newTotalDataObject.issuedCapital = 0;
-
       for (let index = 0; index < lastIndex; index++) {
-        //console.log("calcDataColumns?: ",(this.newTotalDataObject.authorizedAmount))
         this.newTotalDataObject.authorizedAmount += arg[index].authorizedAmount;
         this.newTotalDataObject.issuedAmount += arg[index].issuedAmount;
         this.newTotalDataObject.authorizedCapital += arg[index].authorizedCapital;
         this.newTotalDataObject.issuedCapital+= arg[index].issuedCapital;
       }
-
-      // arg[lastIndex].authorizedAmount =  this.newTotalDataObject.authorizedAmount;
-      // arg[lastIndex].issuedAmount = this.newTotalDataObject.issuedAmount;
-      // arg[lastIndex].authorizedCapital = this.newTotalDataObject.authorizedCapital;
-      // arg[lastIndex].issuedCapital =  this.newTotalDataObject.issuedCapital;
     }
 
 
@@ -291,9 +258,9 @@ export default class Home extends Vue {
 }
 </script>
 <style lang="scss">
+@import "../assets/scss/variables.scss";
 button{
  margin-left: auto;
-  cursor: pointer;
-  background-color: #42b983;
+cursor: pointer;
 }
 </style>

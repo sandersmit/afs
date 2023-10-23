@@ -56,45 +56,45 @@ export default class TransferRow extends Vue {
 </script>
 
 <style lang="scss">
+@import "../assets/scss/variables.scss";
 .transfer-row {
-  
     width: 100%;
     text-align: left;
 
     section{
-      display: flex;
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
     }
 
  &.__issueStock{
-  border-left: 0.5rem solid #BA64C5;
+  border-left: 0.5rem solid $issueStock;
   span{
       &:before{
-        background-color: #BA64C5;
+        background-color: $issueStock;
       }
     }
  }
  &.__IAC{
- border-left: 0.5rem solid #53A43E;
+ border-left: 0.5rem solid $iac;
   span{
       &:before{
-        background-color:  #53A43E;
+        background-color:  $iac;
       }
     }
  }
  &.__TRANSFER{
-  border-left: 0.5rem solid #F8A71A;
+  border-left: 0.5rem solid $transfer;
   span{
       &:before{
-        background-color:  #F8A71A;
+        background-color: $transfer;
       }
     }
  }
- border-radius: 5px;
+  border-radius: 5px;
   margin: 0.5rem 0rem;
   max-width: 500px;
   padding: 1rem;
@@ -102,12 +102,12 @@ export default class TransferRow extends Vue {
   flex-direction: column;
   align-items: flex-start;
   min-width: 320px;
-  background-color:#FDFDFD;
-  color: #606163;
+  background-color:$gray-light-5;
+  color: $gray-dark-1;
   font-size: 1rem;
   &__recorddate{
-    border-top: dashed 1px #8e8f92;
-    color: #8e8f92;
+    border-top: dashed 1px $gray-light-3;
+    color: $gray-light-3;
     padding-top: 0.5rem;
     margin-top: 0.5rem;
     width: 100%;
@@ -119,13 +119,12 @@ export default class TransferRow extends Vue {
     span{
       margin-left: 0.5rem;
     }
-
   }
   &__amount{
     font-size: 1.2rem;
   }
   &__state {
-    color: #8e8f92;
+    color: $gray-light-3;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -153,7 +152,7 @@ export default class TransferRow extends Vue {
   }
   span{
     font-weight: 800;
-      color: #3f4041;
+      color: $gray-dark-3;
     }
 }
 </style>

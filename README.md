@@ -1,4 +1,11 @@
 # afs-test
+some point for next itterations
+- add Pinia store (instead of vuex - faster & simpler)
+- use vite instead of vue cli (faster)
+- add user transisitons
+- and some other form & ui/user feedback.
+- optimalize scss. + compiling (vite)
+
 
 ## Details
 

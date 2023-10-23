@@ -66,6 +66,9 @@
       flex-wrap: wrap;
       align-content: flex-start;
   }
+  .b-table {
+    margin-bottom: 2rem;
+  }
   form{
       display: flex;
       flex-wrap: wrap;

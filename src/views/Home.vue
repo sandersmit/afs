@@ -1,9 +1,10 @@
 <template>
   <div class="home">
+    <h1>Home</h1>
     <b-table :data="computedcalcDataColumns" :columns="columns"></b-table>
-    <a class="cta" @click="popForm">
-        Add new class
-    </a>
+    <!-- <a class="cta" @click="popForm">
+       Toggle form
+    </a> -->
     <form v-if="showform" @submit.prevent>
     <h3>Add security class form</h3>
       <div>
@@ -29,7 +30,7 @@
                        min="100" @input="inputCheckinputIssuedCapital($event)"/>
       </div>
      
-    <button class="cta"  @click="addSecurityClassDataRow">Add</button>
+    <button class="cta"  @click="addSecurityClassDataRow">Add new class</button>
     </form>
     <!-- <div class="message" :class="{ complete: completed, 'text-danger': hasError }">
      Security class added
@@ -72,7 +73,7 @@ export default class Home extends Vue {
   hasError = false;
   completed = false;
   loading = false;
-  showform = false;
+  showform = true;
   tableData: TableData[] = [];
 
   inputAuthorizedAmount= 0;
@@ -152,33 +153,45 @@ export default class Home extends Vue {
     this.completed = !this.completed
     console.log("addSecurityClassDataRow", this.tableData.length)
     const newrowposition = this.tableData.length - 1;
+    const series = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const randomSerie = series[Math.floor(Math.random() * series.length)];
     const newSecurityObject = 
     {
         id: "42f2462d-49d0-4e91-8fe1-de2e656b0f0688",
-        name: "Serie ..",
+        name: `Series ${randomSerie}`,
         nominalValue: 5,
-        // authorizedAmount: Math.floor(Math.random()*10000),
-        // issuedAmount: Math.floor(Math.random()*10000),
-        // authorizedCapital: Math.floor(Math.random()*10000),
-        // issuedCapital: Math.floor(Math.random()*10000),
         authorizedAmount: Number(this.inputAuthorizedAmount),
         issuedAmount: Number(this.inputIssuedAmount),
         authorizedCapital: Number(this.inputAuthorizedCapital),
         issuedCapital: Number(this.inputIssuedCapital),
       }
-    this.tableData.splice(newrowposition, 0, newSecurityObject);
-    this.calcDataColumns(this.tableData)
+
+      
+      //create random default values
+      if (newSecurityObject.authorizedAmount == 0) {
+         newSecurityObject.authorizedAmount = Math.floor(Math.random()*10000)
+      }
+      if (newSecurityObject.issuedAmount == 0) {
+         newSecurityObject.issuedAmount = Math.floor(Math.random()*10000)
+      }
+      if (newSecurityObject.authorizedCapital == 0) {
+         newSecurityObject.authorizedCapital = Math.floor(Math.random()*10000)
+      }
+      if (newSecurityObject.issuedCapital == 0) {
+         newSecurityObject.issuedCapital = Math.floor(Math.random()*10000)
+      }
+
+      this.tableData.splice(newrowposition, 0, newSecurityObject);
+      this.calcDataColumns(this.tableData)
   }
 
 
   addTotalDataRow() {
     const newrowposition = this.tableData.length;
     this.tableData.splice(newrowposition, 0, this.newTotalDataObject);
-    console.log("addTotalDataRow", this.tableData.length)
   }
 
   async fetchData() {
-    console.log("fetchData()");
       const response = await this.getData();
       //console.log(response);
       const data = await response;
@@ -189,7 +202,7 @@ export default class Home extends Vue {
   
   //Make it async because using await
     async initDataColumns() {
-      console.log("initDataColumns()", this.tableData.length  );
+      //console.log("initDataColumns()", this.tableData.length  );
       //first get the fetched data promise with await
       const response = await this.fetchData();
       this.tableData = response;

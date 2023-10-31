@@ -7,29 +7,29 @@
     </a> -->
     <form v-if="showform" @submit.prevent>
     <h3>Add security class form</h3>
-      <div>
+     <!-- <div>
         <label>	Authorized amount</label>
         <input type="number" placeholder="Authorized amount" min="100" @input="inputCheckinputAuthorizedAmount($event)"/>
+      </div> -->
+    <div>
+        <label>	Authorized amount</label>
+        <input type="number" placeholder="Authorized amount" v-model="inputAuthorizedAmount"  min="100" />
       </div>
+     
+      
+  inputIssuedCapital = 0;
       <div>
         <label>Issued amount</label>
-        <input type="number"
-                       placeholder="Issued amount"
-                       min="100" @input="inputCheckinputIssuedAmount($event)"/>
+        <input placeholder="Issued amount" type="number" v-model="inputIssuedAmount"  min="100" />
       </div>
       <div>
         <label>Authorized Capital</label>
-        <input type="number"
-                       placeholder="Authorized Capital"
-                       min="100" @input="inputCheckinputAuthorizedCapital($event)"/>
+        <input  placeholder="Authorized Capital" type="number" v-model="inputAuthorizedCapital"  min="100" />
       </div>
       <div>
         <label>Issued capital</label>
-        <input type="number"
-                       placeholder="Issued capital"
-                       min="100" @input="inputCheckinputIssuedCapital($event)"/>
+        <input   placeholder="Issued capital" type="number" v-model="inputIssuedCapital"  min="100" />
       </div>
-     
     <button class="cta"  @click="addSecurityClassDataRow">Add new class</button>
     </form>
     <!-- <div class="message" :class="{ complete: completed, 'text-danger': hasError }">
@@ -132,22 +132,22 @@ export default class Home extends Vue {
     this.showform = !this.showform
   }
 
-  inputCheckinputAuthorizedAmount (event:any){
-    console.log("event input",event.target.value)
-   return  this.inputAuthorizedAmount = event.target.value
-  }
-  inputCheckinputIssuedAmount (event:any){
-    console.log("event input")
-   return this.inputIssuedAmount = event.target.value
-  }
-  inputCheckinputAuthorizedCapital (event:any){
-    console.log("event input")
-   return this.inputAuthorizedCapital = event.target.value
-  }
-  inputCheckinputIssuedCapital(event:any){
-    console.log("event input")
-   return this.inputIssuedCapital = event.target.value
-  }
+  // inputCheckinputAuthorizedAmount (event:any){
+  //   console.log("event input",event.target.value)
+  //  return  this.inputAuthorizedAmount = event.target.value
+  // }
+  // inputCheckinputIssuedAmount (event:any){
+  //   console.log("event input")
+  //  return this.inputIssuedAmount = event.target.value
+  // }
+  // inputCheckinputAuthorizedCapital (event:any){
+  //   console.log("event input")
+  //  return this.inputAuthorizedCapital = event.target.value
+  // }
+  // inputCheckinputIssuedCapital(event:any){
+  //   console.log("event input")
+  //  return this.inputIssuedCapital = event.target.value
+  // }
 
   addSecurityClassDataRow() {
     this.completed = !this.completed
